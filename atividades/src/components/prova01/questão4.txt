@@ -1,0 +1,96 @@
+O problema de props drilling acontece quando dados precisam ser transmitidos de um componente pai para um componente filho, 
+e esse processo precisa ser repetido em vários níveis (como em uma árvore), levando a uma passagem desnecessária de props 
+pelos componentes intermediários que não têm uso direto desses dados.
+
+Nesse contexto(trocadilho de contexto), o uso de Contextos pode resolver esse problema permitindo que os dados sejam compartilhados 
+entre componentes sem a necessidade de serem passados explicitamente como props em todos os níveis hierárquicos da "árvore".
+
+Exemplo: uma aplicação para gerenciar os dados dos alunos de uma escola. 
+Existem vários componentes que precisam acessar informações sobre os alunos, como seus nomes, notas e turmas.
+
+
+// Criar o contexto global
+const AlunosContext = React.createContext();
+
+// Componente que fornece o contexto e armazena os dados dos alunos
+function Escola() {
+  const [alunos, setAlunos] = useState([]);
+
+  // Adicionar, remover e atualizar informações dos alunos
+  function adicionarAluno(novoAluno) {
+    setAlunos([...alunos, novoAluno]);
+  }
+
+  function removerAluno(id) {
+    setAlunos(alunos.filter((aluno) => aluno.id !== id));
+  }
+
+  function atualizarNota(id, novaNota) {
+    setAlunos(
+      alunos.map((aluno) =>
+        aluno.id === id ? { ...aluno, nota: novaNota } : aluno
+      )
+    );
+  }
+
+  // Fornecer o contexto com os dados dos alunos
+  return (
+    <AlunosContext.Provider value={{ alunos, adicionarAluno, removerAluno, atualizarNota }}>
+      <div>
+        <ComponenteA />
+        <ComponenteB />
+        <ComponenteC />
+      </div>
+    </AlunosContext.Provider>
+  );
+}
+
+// Componente que usa o contexto para exibir uma lista de alunos
+function ComponenteA() {
+  const { alunos } = useContext(AlunosContext);
+
+  return (
+    não implementado
+  )
+}
+
+// Componente que usa o contexto para adicionar um novo aluno
+function ComponenteB() {
+  const { adicionarAluno } = useContext(AlunosContext);
+  const [novoAluno, setNovoAluno] = useState({ nome: "", turma: "", nota: 0 });
+
+  function handleAdicionar() {
+    adicionarAluno({ ...novoAluno, id: Math.random() });
+    setNovoAluno({ nome: "", turma: "", nota: 0 });
+  }
+
+  return (
+    não implementado
+  )
+  
+}
+
+// Componente que usa o contexto para atualizar a nota de um aluno
+function ComponenteC() {
+    const { alunos, atualizarNota } = useContext(AlunosContext);
+
+    function handleAtualizar(id, novaNota) {
+        atualizarNota(id, novaNota);
+    }
+
+    return (
+    não implementado
+    )
+}
+
+
+Neste exemplo, criamos um contexto global "AlunosContext" que fornece informações sobre os alunos e funções para adicionar,
+listar e atualizar informações. No componente "Escola", fornecemos esse contexto para os componentes "ComponenteA", 
+"ComponenteB" e "ComponenteC".
+
+O componente "ComponenteA" usa o contexto para exibir uma lista de alunos. O componente `ComponenteB` usa o contexto para
+adicionar um novo aluno. E o componente `ComponenteC` usa o contexto para atualizar a nota de um aluno.
+
+Com o uso de Contextos, evitamos o problema do PROPS DRILLING, pois não precisamos passar as informações dos alunos de 
+um componente para outro através de props. Em vez disso, os componentes que precisam das informações podem acessá-las 
+diretamente através do contexto global.

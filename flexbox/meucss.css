@@ -1,0 +1,92 @@
+.box-row{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+}
+
+.box-column{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+
+.box-row-reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    border: 1px solid red;
+}
+
+.box-column-reverse{
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100px;
+}
+
+.box-wrap-row{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid red;
+}
+
+.box-wrap-column{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* o flex-flow é uma abreviação para flex-direction e flex-wrap */
+    border: 1px solid blue;
+    height: 500px;
+    
+}
+
+.box-flex{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+}
+
+.box-align-items{
+    display: flex;
+    /* flex-direction: row; */
+    /*as duas acima são padrões*/
+    flex-flow: row nowrap;
+    /* o flex-flow é uma abreviação para flex-direction e flex-wrap */
+    align-items: flex-end; /* diz respeito ao alinhamento no cross axis. stretch é o padrão*/
+    border: 1px solid red;
+    height: 300px;
+
+}
+
+
+.box-justify-content{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    justify-content: center;    
+    align-items: center;
+
+
+}
+
+.item{
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.item-1{
+    flex: 1;
+    border: 1px solid #000;
+    height: 50px;
+}
+
+.item-2{
+    flex: 2;
+    border: 1px solid #000;
+}
+
+.item-3{
+    flex: 3;
+    border: 1px solid #000;
+}
+
+
+

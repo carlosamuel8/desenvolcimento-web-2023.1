@@ -1,0 +1,23 @@
+.world {
+    text-align: center;
+}
+.arena {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.enemy {
+    margin-top: 0;
+}
+
+.enemy h2, .hero h2 {
+    margin: 0;
+}
+
+.arena div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

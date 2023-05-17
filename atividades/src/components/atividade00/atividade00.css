@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.container {
+    width: 100%;
+    height: 100%;
+    font-family: 'Press Start 2P', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infos {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 18px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    background-color: red;
+}
+
+.painel_temp {
+    width: 100%;
+}
+
+.painel_temp h1 {
+    line-height: 30px;
+}
+
+.painel_temp div {
+    margin-top: 20px;
+}
+
+.nome, .painel_temp h1 {
+    font-size: 24px;
+}
+
+.curso, .universidade, .painel_temp div h2 {
+    font-size: 16px;
+}

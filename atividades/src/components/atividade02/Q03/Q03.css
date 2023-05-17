@@ -1,0 +1,21 @@
+div {
+    text-align: center;
+}
+
+button {
+    width: 80%; 
+    height: 40px; 
+    margin-top: 0.83em;
+    font-size: 17px; 
+    font-weight: bold;
+    background-color: rgb(14, 156, 14); 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+button:hover {
+    background-color: rgb(16, 194, 16);
+}

@@ -1,0 +1,40 @@
+.pokemon-infos {
+    font-size: 20px;
+    text-align: center;
+}
+
+.pokemon-infos div img {
+    width: 200px;
+    height: 200px;
+}
+
+.btn {
+    width: 140px; 
+    height: 40px; 
+    margin-top: 0.83em;
+    font-size: 17px; 
+    font-weight: bold;
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.btn-avancar {  
+    margin-left: 10px;
+    background-color: rgb(14, 156, 14); 
+}
+
+.btn-retornar { 
+    margin-right: 10px;
+    background-color: rgb(181, 9, 6); 
+}
+
+.btn-avancar:hover {
+    background-color: rgb(16, 194, 16);
+}
+
+.btn-retornar:hover { 
+    background-color: rgb(190, 22, 19); 
+}

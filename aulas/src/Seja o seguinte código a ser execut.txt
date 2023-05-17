@@ -1,0 +1,34 @@
+Seja o seguinte código a ser executado no console do navegador:
+fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population")
+.then(
+(response) => {
+return response.json()
+}
+)
+.then(
+(data) => {
+console.table(data.map(
+(country) => country.capital[0] + "-" + country.population
+))
+}
+)
+.catch(error => console.log(error))
+
+Ele retorna a saída, impressa em console.table:
+[
+{"capital":["Dublin"],"population":4994724},
+{"capital":["Nicosia"],"population":1207361},
+...
+{"capital":["Madrid"],"population":47351567}
+]
+Ou seja, um vetor com vários objetos contendo duas propriedades: capital, do tipo vetor de
+string e population, do tipo numérico.
+Crie um componente chamado Questao03.jsx que imprima na tela as capitais do países
+com maior E menor população (population). Use then-catch ou async-await.
+Dica:
+● Na função callback do último then, faça um laço que percorre todo o vetor data de
+objetos. Crie as variáveis numéricas locais (let) para armazenar a maior e menor
+population e também os seus índices do vetor data. Ao final do laço, de posse
+desses índices, acessando o vetor data, alimente duas variáveis de estado que
+representam os nomes das capitais de maior e menor população. Imprima essas
+variáveis em tela.

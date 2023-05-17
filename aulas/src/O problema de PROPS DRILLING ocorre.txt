@@ -1,0 +1,55 @@
+O problema de PROPS DRILLING ocorre quando é necessário passar dados de um componente pai para um componente filho, e esse processo precisa ser repetido em múltiplos níveis, levando a uma "perfuração" de props pelos componentes intermediários que não têm nenhum uso direto desses dados.
+
+O uso de Contextos pode resolver esse problema ao permitir que dados sejam compartilhados entre componentes sem a necessidade de passá-los explicitamente como props por todos os níveis hierárquicos.
+
+Por exemplo, considere um aplicativo de comércio eletrônico que exibe uma lista de produtos e permite que o usuário adicione produtos ao carrinho. Para exibir a lista de produtos, precisamos buscar esses dados do servidor e passá-los para os componentes que os renderizam. Em vez de passar esses dados como props para todos os componentes intermediários, podemos usar um contexto para fornecer os dados diretamente aos componentes filho que precisam deles.
+
+
+import React, { createContext, useContext } from 'react';
+
+// Criar um contexto para a lista de produtos
+const ProductsContext = createContext([]);
+
+// Componente que fornece a lista de produtos para os componentes filho
+function ProductsProvider(props) {
+  // Buscar os dados do servidor aqui
+  const products = [
+    { id: 1, name: 'Produto 1', price: 10 },
+    { id: 2, name: 'Produto 2', price: 20 },
+    { id: 3, name: 'Produto 3', price: 30 },
+  ];
+
+  // Fornecer os dados do produto para os componentes filho através do contexto
+  return <ProductsContext.Provider value={products} {...props} />;
+}
+
+// Componente filho que usa o contexto para exibir a lista de produtos
+function ProductList() {
+  const products = useContext(ProductsContext);
+
+  return (
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>
+          {product.name} - R${product.price}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Componente pai que envolve o componente ProductList com o contexto
+function App() {
+  return (
+    <ProductsProvider>
+      <ProductList />
+    </ProductsProvider>
+  );
+}
+
+
+
+Neste exemplo, o componente ProductsProvider é responsável por buscar a lista de produtos e fornecê-la aos componentes filho por meio do contexto ProductsContext. O componente ProductList usa o hook useContext para acessar a lista de produtos diretamente, sem a necessidade de passá-la como prop por todos os níveis hierárquicos. O componente App envolve o componente ProductList com o contexto fornecido pelo ProductsProvider.
+
+Dessa forma, evita-se o problema de PROPS DRILLING, pois os dados são fornecidos diretamente aos componentes filho por meio do contexto, sem precisar passá-los explicitamente como props pelos componentes intermediários.
+
